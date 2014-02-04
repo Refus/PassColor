@@ -1,0 +1,60 @@
+body {
+	background-color: rgb(97, 204, 231);
+}
+.foglio {
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 1em auto 1em;
+	max-height: 600px;
+	max-width: 600px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	background-color: rgba(255, 255, 255, 0.85);
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	font-size: 1.2em;
+}
+div {
+	padding: 15px;
+}
+.title {
+	text-align: center;
+	/*text-transform: uppercase;*/
+	color: #DC3D24;
+	font-size: 2em;
+}
+li {
+	background-color: rgba(0, 0, 0, 0.2);
+	margin: 1px;
+	list-style: none;
+	display: inline-block;
+	position: relative;
+}
+ul {
+	max-width: 1300px;
+	margin: 0 auto;
+	text-align: center;
+}
+.exampleLine {
+	padding: 0px 0px 20px 0px;
+	width: 31.5em;
+}
+.exampleLine li {
+	width: 3em;
+	height: 3em;
+	text-align: center;
+	line-height: 3em;
+}
+.grid {
+	padding: 10px 20px 20px 20px;
+	width: 16em;/*grid 3*X */
+}
+.grid li {
+	width: 5em;
+	height: 5em;
+	text-align: left;
+}
