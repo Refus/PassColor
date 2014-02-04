@@ -41,7 +41,6 @@ ul {
 }
 .exampleLine {
 	padding: 0px 0px 20px 0px;
-	width: 31.5em;
 }
 .exampleLine li {
 	width: 3em;
@@ -50,7 +49,7 @@ ul {
 	line-height: 3em;
 }
 .grid {
-	padding: 10px 20px 20px 20px;
+	padding: 0;
 	width: 16em;/*grid 3*X */
 }
 .grid li {
