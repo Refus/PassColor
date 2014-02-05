@@ -15,52 +15,53 @@ function conta() {
 		}
 		prod = prod + Math.pow((index + 2), $(this).prop('colore'));
 	});
-	return prod;
+	$("#totale").text(prod);
+	var ex = CryptoJS.SHA3(prod.toString(), {
+		outputLength : 512
+	}).toString(CryptoJS.enc.Hex)
+	var ascii = hex2a(ex);
+	$("#cod").text(ascii.substr(0, 12));
 }
 
 function crea(n) {
 	$(".grid>li").remove();
+	var em=Math.sqrt(n)*5+1;
+	em=em+'em'
+	$('.grid').css("width", em);
 	for (var i = 0; i < n; i++) {
-		$('.grid').append("<li></li>");
+		$('.grid').append("<li>("+i+"+2)^C</li>");
 	}
 	$(".grid>li").click(function() {
 		if (!$(this).prop('colore')) {
 			$(this).prop('colore', 0)
 		}
 		switch($(this).prop('colore')) {
-
 			case totaleColori:
 				$(this).prop('colore', 0)
 				$(this).css("background-color", "rgba(0, 0, 0, 0.2)");
 				break
-
 			default:
 				$(this).prop('colore', $(this).prop('colore') + 1)
 				var rgbT = arrayC[$(this).prop('colore') - 1];
 				$(this).css("background-color", rgbT);
 				break
 		}
-
-		var valore = conta();
-		$("#totale").text(valore);
-		var ex = CryptoJS.SHA3(valore.toString(), {
-			outputLength : 512
-		}).toString(CryptoJS.enc.Hex)
-		var asci = hex2a(ex);
-		$("#cod").text(asci.substr(0, 12));
+		conta();
+		
 	});
 	$(".grid>li").mouseup(function() {
 		$('.active').removeClass('active');
 		clearInterval(interval);
 	});
-  	$(".grid>li").mousedown(function() {
-  		$( this ).addClass('active');
-  		interval = setInterval(avanti,500);
-  		function avanti(){
-  			var active = $('.active'); 
-  			active.click();
-  			}
-  	});
+	$(".grid>li").mousedown(function() {
+		$( this ).addClass('active');
+		interval = setInterval(avanti,500);
+		function avanti(){
+			var active = $('.active'); 
+			active.click();
+		}
+	});
+	conta();
 }
 
 function creaExample(n) {
@@ -78,19 +79,42 @@ function creaExample(n) {
 		}
 	});
 }
-
+function creaType() {
+	$(".typeofgrid>li").remove();
+	$('.typeofgrid').append("<ul class='typeofgrid9'></ul>");
+	$('.typeofgrid').append("<ul class='typeofgrid16'></ul>");
+	$('.typeofgrid').append("<ul class='typeofgrid25'></ul>");
+	$('.typeofgrid').append("<ul class='typeofgrid36'></ul>");
+	for (var i = 0; i < 9; i++) {
+		$('.typeofgrid9').append("<li></li>");
+	}
+	for (var i = 0; i < 16; i++) {
+		$('.typeofgrid16').append("<li></li>");
+	}
+	for (var i = 0; i < 25; i++) {
+		$('.typeofgrid25').append("<li></li>");
+	}
+	for (var i = 0; i < 36; i++) {
+		$('.typeofgrid36').append("<li></li>");
+	}
+	$('.typeofgrid9').click(function() {
+		crea(9);
+	});
+	$('.typeofgrid16').click(function() {
+		crea(16);
+	});
+	$('.typeofgrid25').click(function() {
+		crea(25);
+	});
+	$('.typeofgrid36').click(function() {
+		crea(36);
+	});
+}
 
 $(document).ready(function() {
 	totaleColori = 9;
 	arrayC = ["rgb(245, 218, 69)", "rgb(154, 245, 69)", "rgb(10, 225, 35)", "rgb(69, 245, 218)", "rgb(69, 154, 245)", "rgb(101, 69, 245)", "rgb(159, 49, 179)", "rgb(245, 69, 154)", "rgb(245, 101, 69)"];
+	creaType();
 	creaExample();
 	crea(9);
-	var valore = conta();
-	$("#totale").text(valore);
-	var ex = CryptoJS.SHA3(valore.toString(), {
-		outputLength : 512
-	}).toString(CryptoJS.enc.Hex)
-	var asci = hex2a(ex);
-	$("#cod").text(asci.substr(0, 12));
-
 }); 
