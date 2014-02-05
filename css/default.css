@@ -6,7 +6,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	margin: 1em auto 1em;
-	max-height: 600px;
 	max-width: 600px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -33,6 +32,7 @@ li {
 	list-style: none;
 	display: inline-block;
 	position: relative;
+	text-align: center;
 }
 ul {
 	max-width: 1300px;
@@ -45,7 +45,6 @@ ul {
 .exampleLine li {
 	width: 3em;
 	height: 3em;
-	text-align: center;
 	line-height: 3em;
 }
 .grid {
@@ -55,5 +54,39 @@ ul {
 .grid li {
 	width: 5em;
 	height: 5em;
-	text-align: left;
+	line-height: 5em;
+	-moz-user-select: none; 
+	-webkit-user-select: none;
+	-ms-user-select:none; 
+	user-select:none;' 
+
+}
+.typeofgrid {
+padding: 0px 0px 20px 0px;
+	display: flex;
+	position: flex;
+}
+.typeofgrid9 {
+	padding: 0px 10px 0px 10px;
+	width: 1.3em;
+margin-top: 0.6em;
+}
+.typeofgrid16 {
+	padding: 0px 10px 0px 10px;
+	width: 2em;
+margin-top: 0.4em;
+}
+.typeofgrid25 {
+	padding: 0px 10px 0px 10px;
+	width: 2.2em;
+margin-top: 0.2em;
+}
+.typeofgrid36 {
+	padding: 0px 10px 0px 10px;
+	width: 2.6em;
+}
+.typeofgrid li {
+	width: 0.3em;
+	height: 0.3em;
+	line-height: 0.3em;
 }
