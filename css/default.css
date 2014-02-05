@@ -65,6 +65,7 @@ ul {
 padding: 0px 0px 20px 0px;
 	display: flex;
 	position: flex;
+	line-height: 0;
 }
 .typeofgrid9 {
 	padding: 0px 10px 0px 10px;
