@@ -49,6 +49,18 @@ function crea(n) {
 		var asci = hex2a(ex);
 		$("#cod").text(asci.substr(0, 12));
 	});
+	$(".grid>li").mouseup(function() {
+		$('.active').removeClass('active');
+		clearInterval(interval);
+	});
+  	$(".grid>li").mousedown(function() {
+  		$( this ).addClass('active');
+  		interval = setInterval(avanti,500);
+  		function avanti(){
+  			var active = $('.active'); 
+  			active.click();
+  			}
+  	});
 }
 
 function creaExample(n) {
