@@ -91,3 +91,6 @@ margin-top: 0.2em;
 	height: 0.3em;
 	line-height: 0.3em;
 }
+.select{
+box-shadow: inset 0 0 5px 1px #000000;
+}
