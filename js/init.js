@@ -32,6 +32,17 @@ function crea(n) {
 		$('.grid').append("<li>("+i+"+2)^C</li>");
 	}
 	$(".grid>li").click(function() {
+	if($('.select').length){
+		if(Number($('.select').text())==0){
+			$(this).prop('colore', 0)
+			$(this).css("background-color", "rgba(0, 0, 0, 0.2)");
+		}else{
+			$(this).prop('colore', Number($('.select').text()))
+			var rgbT = arrayC[Number($('.select').text()) - 1];
+			$(this).css("background-color", rgbT);
+		}
+		$(".exampleLine>li").removeClass('select');
+	}else{
 		if (!$(this).prop('colore')) {
 			$(this).prop('colore', 0)
 		}
@@ -45,6 +56,7 @@ function crea(n) {
 				var rgbT = arrayC[$(this).prop('colore') - 1];
 				$(this).css("background-color", rgbT);
 				break
+		}
 		}
 		conta();
 		
@@ -77,6 +89,10 @@ function creaExample(n) {
 			var rgbT = arrayC[index - 1];
 			$(this).css("background-color", rgbT);
 		}
+	});
+	$(".exampleLine>li").click(function() {
+	$(".exampleLine>li").removeClass('select');
+	$( this ).addClass('select');
 	});
 }
 function creaType() {
