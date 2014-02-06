@@ -133,4 +133,46 @@ $(document).ready(function() {
 	creaType();
 	creaExample();
 	crea(9);
+	
+	/*spiegazioni*/
+		var overlay = document.querySelector( '.md-overlay' );
+
+		[].slice.call( document.querySelectorAll( '.what' ) ).forEach( function( el, i ) {
+
+			var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+				close = modal.querySelector( '.md-close' );
+
+			function removeModal( hasPerspective ) {
+				$(modal).removeClass('md-show' );
+
+				if( hasPerspective ) {
+					$(document.documentElement).removeClass('md-perspective' );
+				}
+			}
+
+			function removeModalHandler() {
+				removeModal($(el).has('md-setperspective').length);
+			}
+
+			el.addEventListener( 'click', function( ev ) {
+				$(modal).addClass('md-show' );
+				overlay.removeEventListener( 'click', removeModalHandler );
+				overlay.addEventListener( 'click', removeModalHandler );
+
+				if( $(el).has('md-setperspective').length ) {
+					setTimeout( function() {
+						$(document.documentElement).addClass('md-perspective' );
+					}, 25 );
+				}
+			});
+
+			close.addEventListener( 'click', function( ev ) {
+				ev.stopPropagation();
+				removeModalHandler();
+			});
+
+		} );
+	
+	
+	
 }); 
