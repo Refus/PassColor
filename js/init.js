@@ -31,7 +31,7 @@ function crea(n) {
 	for (var i = 0; i < n; i++) {
 		$('.grid').append("<li>("+i+"+2)^C</li>");
 	}
-	$(".grid>li").click(function() {
+	$(".grid>li").on("click",function() {
 	if($('.select').length){
 		if(Number($('.select').text())==0){
 			$(this).prop('colore', 0)
@@ -61,6 +61,10 @@ function crea(n) {
 		conta();
 		
 	});
+  	function avanti(){
+			var active = $('.active'); 
+			active.click();
+		}
 	$(".grid>li").mouseup(function() {
 		$('.active').removeClass('active');
 		clearInterval(interval);
@@ -68,10 +72,7 @@ function crea(n) {
 	$(".grid>li").mousedown(function() {
 		$( this ).addClass('active');
 		interval = setInterval(avanti,500);
-		function avanti(){
-			var active = $('.active'); 
-			active.click();
-		}
+	
 	});
 	conta();
 }
@@ -114,16 +115,20 @@ function creaType() {
 		$('.typeofgrid36').append("<li></li>");
 	}
 	$('.typeofgrid9').click(function() {
-		crea(9);
+    localStorage.gridType = 9;
+     crea(localStorage.gridType); 
 	});
 	$('.typeofgrid16').click(function() {
-		crea(16);
+    localStorage.gridType = 16;
+     crea(localStorage.gridType); 
 	});
 	$('.typeofgrid25').click(function() {
-		crea(25);
+    localStorage.gridType = 25;
+     crea(localStorage.gridType); 
 	});
 	$('.typeofgrid36').click(function() {
-		crea(36);
+    localStorage.gridType = 36;
+     crea(localStorage.gridType);
 	});
 }
 
@@ -132,8 +137,16 @@ $(document).ready(function() {
 	arrayC = ["rgb(245, 218, 69)", "rgb(154, 245, 69)", "rgb(10, 225, 35)", "rgb(69, 245, 218)", "rgb(69, 154, 245)", "rgb(101, 69, 245)", "rgb(159, 49, 179)", "rgb(245, 69, 154)", "rgb(245, 101, 69)"];
 	creaType();
 	creaExample();
-	crea(9);
-	
+	if (localStorage.gridType)
+  {
+  crea(localStorage.gridType); 
+  }
+else
+  { 
+  localStorage.gridType = 16;
+     crea(localStorage.gridType); 
+  }
+
 	/*spiegazioni*/
 		var overlay = document.querySelector( '.md-overlay' );
 
@@ -172,7 +185,43 @@ $(document).ready(function() {
 			});
 
 		} );
-	
-	
-	
+  
+		var overlay = document.querySelector( '.md-overlay' );
+
+		[].slice.call( document.querySelectorAll( '.imp' ) ).forEach( function( el, i ) {
+
+			var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+				close = modal.querySelector( '.md-close' );
+
+			function removeModal( hasPerspective ) {
+				$(modal).removeClass('md-show' );
+
+				if( hasPerspective ) {
+					$(document.documentElement).removeClass('md-perspective' );
+				}
+			}
+
+			function removeModalHandler() {
+				removeModal($(el).has('md-setperspective').length);
+			}
+
+			el.addEventListener( 'click', function( ev ) {
+				$(modal).addClass('md-show' );
+				overlay.removeEventListener( 'click', removeModalHandler );
+				overlay.addEventListener( 'click', removeModalHandler );
+
+				if( $(el).has('md-setperspective').length ) {
+					setTimeout( function() {
+						$(document.documentElement).addClass('md-perspective' );
+					}, 25 );
+				}
+			});
+
+			close.addEventListener( 'click', function( ev ) {
+				ev.stopPropagation();
+				removeModalHandler();
+			});
+
+		} );  
+  
 }); 
