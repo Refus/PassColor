@@ -44,6 +44,7 @@ ul {
 	padding: 0px 0px 20px 0px;
 }
 .exampleLine li {
+     cursor: pointer;
 	width: 3em;
 	height: 3em;
 	line-height: 3em;
@@ -53,13 +54,14 @@ ul {
 	width: 16em;/*grid 3*X */
 }
 .grid li {
+     cursor: pointer;
 	width: 5em;
 	height: 5em;
 	line-height: 5em;
 	-moz-user-select: none; 
 	-webkit-user-select: none;
 	-ms-user-select:none; 
-	user-select:none;' 
+	user-select:none;
 
 }
 .typeofgrid {
@@ -105,11 +107,27 @@ top:0;
 right: 0.3em;
 padding: 0;
 font-size: 1.7em;
+  
+   cursor: pointer;
 }
 .what:hover
 { 
 color:rgba(0, 0, 0, 0.6);
 }
+.imp{
+color:rgba(0, 0, 0, 0.3);
+position:absolute;
+top:0.2em;
+left: 0.3em;
+padding: 0;
+font-size: 1.7em;
+   cursor: pointer;
+}
+.imp:hover
+{ 
+color:rgba(0, 0, 0, 0.6);
+}
+
 .md-modal {
 	padding: 0;
     position: fixed;
