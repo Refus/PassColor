@@ -1,3 +1,11 @@
+@import url(http://weloveiconfonts.com/api/?family=maki);
+
+/* maki */
+[class*="maki-"]:before {
+  font-family: 'maki', sans-serif;
+  font-size:1.5em;
+}
+
 body {
 	background-color: rgb(97, 204, 231);
 }
@@ -48,6 +56,25 @@ ul {
 	width: 3em;
 	height: 3em;
 	line-height: 3em;
+  	-moz-user-select: none; 
+	-webkit-user-select: none;
+	-ms-user-select:none; 
+	user-select:none;
+}
+.typeofcont{
+  	padding: 0px 0px 20px 0px;
+  font-size: 0.8em
+}
+.typeofcont li {
+     cursor: pointer;
+	width: 5em;
+	height: 5em;
+	line-height: 5em;
+	-moz-user-select: none; 
+	-webkit-user-select: none;
+	-ms-user-select:none; 
+	user-select:none;
+
 }
 .grid {
 	padding: 0;
