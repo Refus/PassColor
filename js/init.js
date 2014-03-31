@@ -1,3 +1,8 @@
+function is_touch_device() {
+			if (('ontouchstart' in window  || 'onmsgesturechange' in window)&&navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){
+				return true
+			}else{return false}
+		};
 function hex2a(hex) {
 	var str = '';
 	for (var i = 0; i < hex.length; i += 2) {
@@ -23,13 +28,15 @@ function conta() {
 	$("#cod").text(ascii.substr(0, 12));
 }
 
-function crea(n) {
+function crea(n) { 
+  var makiArray= new Array("maki-aboveground-rail active","maki-airfield","maki-airport","maki-art-gallery","maki-bar","maki-baseball","maki-basketball","maki-beer","maki-belowground-rail","maki-bicycle","maki-bus","maki-cafe","maki-campsite","maki-cemetery","maki-cinema","maki-college","maki-commerical-building","maki-credit-card","maki-cricket","maki-embassy","maki-fast-food","maki-ferry","maki-fire-station","maki-football","maki-fuel","maki-garden","maki-giraffe","maki-golf","maki-grocery-store","maki-harbor","maki-heliport","maki-hospital","maki-industrial-building","maki-library","maki-lodging","maki-london-underground","maki-minefield","maki-monument","maki-museum","maki-pharmacy","maki-pitch","maki-police","maki-post","maki-prison","maki-rail","maki-religious-christian","maki-religious-islam","maki-religious-jewish","maki-restaurant","maki-roadblock","maki-school","maki-shop","maki-skiing","maki-swimming","maki-theatre","maki-town-hall","maki-tree-1","maki-warehouse");
 	$(".grid>li").remove();
 	var em=Math.sqrt(n)*5+1;
 	em=em+'em'
 	$('.grid').css("width", em);
 	for (var i = 0; i < n; i++) {
-		$('.grid').append("<li>("+i+"+2)^C</li>");
+      var liType=["<li>&nbsp;</li>","<li>"+i+"</li>","<li>("+i+"+2)^C</li>","<li><span class="+makiArray[i]+"></li>",]
+		$('.grid').append(liType[localStorage.gridType]);
 	}
 	$(".grid>li").on("click",function() {
 	if($('.select').length){
@@ -65,6 +72,16 @@ function crea(n) {
 			var active = $('.active'); 
 			active.click();
 		}
+  if(is_touch_device()){
+   	$(".grid>li").bind('touchstart', function(){
+      $( this ).addClass('active');
+		interval = setInterval(avanti,500);
+        
+    }).bind('touchend', function(){
+        		$('.active').removeClass('active');
+		clearInterval(interval);
+    });
+  }else{
 	$(".grid>li").mouseup(function() {
 		$('.active').removeClass('active');
 		clearInterval(interval);
@@ -72,8 +89,9 @@ function crea(n) {
 	$(".grid>li").mousedown(function() {
 		$( this ).addClass('active');
 		interval = setInterval(avanti,500);
-	
 	});
+}
+
 	conta();
 }
 
@@ -115,20 +133,36 @@ function creaType() {
 		$('.typeofgrid36').append("<li></li>");
 	}
 	$('.typeofgrid9').click(function() {
-    localStorage.gridType = 9;
-     crea(localStorage.gridType); 
+    localStorage.gridDim = 9;
+     crea(localStorage.gridDim); 
 	});
 	$('.typeofgrid16').click(function() {
-    localStorage.gridType = 16;
-     crea(localStorage.gridType); 
+    localStorage.gridDim = 16;
+     crea(localStorage.gridDim); 
 	});
 	$('.typeofgrid25').click(function() {
-    localStorage.gridType = 25;
-     crea(localStorage.gridType); 
+    localStorage.gridDim = 25;
+     crea(localStorage.gridDim); 
 	});
 	$('.typeofgrid36').click(function() {
-    localStorage.gridType = 36;
-     crea(localStorage.gridType);
+    localStorage.gridDim = 36;
+     crea(localStorage.gridDim);
+	});
+  	$('.typeofcontV').click(function() {
+    localStorage.gridType = 0;
+     crea(localStorage.gridDim); 
+	});	
+  $('.typeofcontN').click(function() {
+    localStorage.gridType = 1;
+     crea(localStorage.gridDim); 
+	});
+  $('.typeofcontF').click(function() {
+    localStorage.gridType = 2;
+     crea(localStorage.gridDim); 
+	});	
+  $('.typeofcontD').click(function() {
+    localStorage.gridType = 3;
+     crea(localStorage.gridDim); 
 	});
 }
 
@@ -137,14 +171,19 @@ $(document).ready(function() {
 	arrayC = ["rgb(245, 218, 69)", "rgb(154, 245, 69)", "rgb(10, 225, 35)", "rgb(69, 245, 218)", "rgb(69, 154, 245)", "rgb(101, 69, 245)", "rgb(159, 49, 179)", "rgb(245, 69, 154)", "rgb(245, 101, 69)"];
 	creaType();
 	creaExample();
-	if (localStorage.gridType)
+  if (!localStorage.gridType||localStorage.gridType>3)
+
+  { 
+  localStorage.gridType = 0;
+  }
+	if (localStorage.gridDim)
   {
-  crea(localStorage.gridType); 
+  crea(localStorage.gridDim); 
   }
 else
   { 
-  localStorage.gridType = 16;
-     crea(localStorage.gridType); 
+  localStorage.gridDim = 16;
+     crea(localStorage.gridDim); 
   }
 
 	/*spiegazioni*/
