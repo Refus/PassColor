@@ -79,12 +79,12 @@ function crea(n) {
         
     }).bind('touchend', function(){
         		$('.active').removeClass('active');
-		clearInterval(interval);
+      if(interval){clearInterval(interval);}
     });
   }else{
 	$(".grid>li").mouseup(function() {
 		$('.active').removeClass('active');
-		clearInterval(interval);
+      if(interval){clearInterval(interval);}
 	});
 	$(".grid>li").mousedown(function() {
 		$( this ).addClass('active');
@@ -167,6 +167,7 @@ function creaType() {
 }
 
 $(document).ready(function() {
+  interval=null;
 	totaleColori = 9;
 	arrayC = ["rgb(245, 218, 69)", "rgb(154, 245, 69)", "rgb(10, 225, 35)", "rgb(69, 245, 218)", "rgb(69, 154, 245)", "rgb(101, 69, 245)", "rgb(159, 49, 179)", "rgb(245, 69, 154)", "rgb(245, 101, 69)"];
 	creaType();
